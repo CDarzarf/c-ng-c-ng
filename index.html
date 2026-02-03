@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shop Đồ Dùng Học Tập - One Page</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="header" id="home">
+    <div class="container header-row">
+      <div>
+        <h1>Shop Văn Phòng phẩm Darzarf</h1>
+        <p class="sub">Mua nhanh – Giá tốt – Giao tận nơi</p>
+      </div>
+      <nav class="nav">
+        <a href="#sanpham">Sản phẩm</a>
+        <a href="#giohang">Giỏ hàng</a>
+        <a href="#dathang">Đặt hàng</a>
+        <a href="#hoadon">Hóa đơn</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- SẢN PHẨM -->
+    <section id="sanpham" class="section">
+      <div class="section-head">
+        <h2>Sản phẩm</h2>
+        <div id="stats" class="muted"></div>
+      </div>
+
+      <!-- Toolbar: search/sort/price -->
+      <div class="toolbar">
+        <input id="searchInput" type="text" placeholder="Tìm theo tên (vd: bút, vở)..." />
+        <select id="sortSelect">
+          <option value="default">Sắp xếp</option>
+          <option value="price_asc">Giá tăng dần</option>
+          <option value="price_desc">Giá giảm dần</option>
+          <option value="name_asc">Tên A → Z</option>
+        </select>
+        <input id="minPrice" type="number" placeholder="Giá min" />
+        <input id="maxPrice" type="number" placeholder="Giá max" />
+        <button id="resetBtn" class="btn btn-outline">Reset</button>
+      </div>
+
+      <div class="layout-2col">
+        <!-- Categories -->
+        <aside class="panel">
+          <h3>Danh mục</h3>
+          <ul id="categoryList" class="list"></ul>
+
+          <hr class="sep"/>
+
+          <!-- Wishlist panel -->
+          <div class="wishlist-head">
+            <h3>❤️ Yêu thích</h3>
+            <button id="clearWishBtn" class="btn btn-outline btn-sm">Xóa</button>
+          </div>
+          <div id="wishEmpty" class="muted">Chưa có sản phẩm yêu thích.</div>
+          <ul id="wishList" class="list"></ul>
+        </aside>
+
+        <!-- Product grid -->
+        <div>
+          <div id="productGrid" class="product-grid"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GIỎ HÀNG -->
+    <section id="giohang" class="section">
+      <div class="section-head">
+        <h2>Giỏ hàng</h2>
+        <div id="cartEmpty" class="muted">Chưa có sản phẩm trong giỏ.</div>
+      </div>
+
+      <div class="cart-wrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Sản phẩm</th>
+              <th>Giá</th>
+              <th>SL</th>
+              <th>Thành tiền</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="cartBody"></tbody>
+        </table>
+
+        <div class="panel">
+          <h3>Thanh toán</h3>
+
+          <div class="voucher">
+            <input id="voucherInput" type="text" placeholder="Mã giảm giá (SCHOOL10 / FREESHIP)" />
+            <button id="applyVoucherBtn" class="btn btn-sm">Áp dụng</button>
+          </div>
+          <div id="voucherMsg" class="msg muted"></div>
+
+          <div class="line"><span>Hàng:</span> <b id="itemsCount">0</b></div>
+          <div class="line"><span>Tổng SL:</span> <b id="qtyCount">0</b></div>
+          <div class="line"><span>Tạm tính:</span> <b id="subTotal">0</b> đ</div>
+          <div class="line"><span>Ship:</span> <b id="shipFee">0</b> đ</div>
+          <div class="line"><span>Giảm:</span> <b id="discount">0</b> đ</div>
+          <div class="grand"><span>Tổng:</span> <b id="grandTotal">0</b> đ</div>
+
+          <div class="row-btn">
+            <button id="clearCartBtn" class="btn btn-outline">Xóa giỏ</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ĐẶT HÀNG -->
+    <section id="dathang" class="section">
+      <h2>Đặt hàng</h2>
+      <form id="orderForm" class="form">
+        <div class="grid-2">
+          <label>Họ tên
+            <input id="fullName" type="text" placeholder="Nguyễn Văn A" />
+          </label>
+          <label>Số điện thoại
+            <input id="phone" type="text" placeholder="0xxxxxxxxx" />
+          </label>
+        </div>
+
+        <label>Địa chỉ
+          <input id="address" type="text" placeholder="Số nhà, đường, phường/xã..." />
+        </label>
+
+        <div class="grid-2">
+          <label>Thanh toán
+            <select id="payment">
+              <option value="cod">COD</option>
+              <option value="bank">Chuyển khoản</option>
+              <option value="momo">Ví điện tử</option>
+            </select>
+          </label>
+          <label>Ghi chú
+            <input id="note" type="text" placeholder="Giao giờ hành chính..." />
+          </label>
+        </div>
+
+        <div id="formMsg" class="msg"></div>
+        <button class="btn" type="submit">Tạo hóa đơn</button>
+      </form>
+    </section>
+
+    <!-- HÓA ĐƠN -->
+    <section id="hoadon" class="section">
+      <h2>Hóa đơn</h2>
+      <div id="invoiceBox" class="invoice muted">
+        Chưa có hóa đơn. Hãy đặt hàng để tạo hóa đơn.
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container muted">© Shop Đồ Dùng Học Tập - One Page</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
